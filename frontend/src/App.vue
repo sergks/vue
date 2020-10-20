@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <header>
-      <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+      <nav class="navbar navbar-expand-md navbar-dark fixed-top dark">
         <div class="container">
           <router-link class="navbar-brand" v-bind:to="{name: 'Home'}">MyShop</router-link>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
