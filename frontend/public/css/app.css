@@ -36,6 +36,10 @@ main {
     object-fit: cover;
 }
 
+.error {
+    color: red;
+}
+
 
 /* Featurettes
 ------------------------- */
