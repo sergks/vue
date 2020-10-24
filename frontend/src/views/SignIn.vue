@@ -5,12 +5,12 @@
       <div class="col-md-5">
         <form @submit="signIn">
           <div class="form-group">
-            <label class="control-label" for="email">Email</label>
+            <label for="email">Email</label>
             <input type="email" class="form-control" id="email" v-model="email">
             <div class="error">{{errors.email}}</div>
           </div>
           <div class="form-group">
-            <label class="control-label" for="password">Пароль</label>
+            <label for="password">Пароль</label>
             <input type="password" class="form-control" id="password" v-model="password">
             <div class="error">{{errors.password}}</div>
           </div>
@@ -37,13 +37,14 @@
     methods: {
       signIn(e) {
         if (this.validate()) {
-          // SEND Ajax запрос
-          User.login({
-            email: this.email,
-            accessToken: 'ksdjflksjdflkjdslkfj!#'
-          })
+          const result = {
+            name: 'Иван Иванов',
+            email: 'ivan@ya.ru',
+            accessToken: 'jsdlf732649823709!ew98r#$432'
+          }
+          User.login(result)
         }
-        e.preventDefault();
+        e.preventDefault()
       },
       validate() {
         this.errors = {}
@@ -51,6 +52,7 @@
         if (this.email.trim().length === 0) {
           this.errors.email = 'Заполните Email.'
         }
+
         if (this.password.trim().length === 0) {
           this.errors.password = 'Заполните Пароль.'
         }
@@ -60,7 +62,3 @@
     }
   }
 </script>
-
-<style scoped>
-
-</style>

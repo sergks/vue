@@ -3,7 +3,7 @@
  *
  * item {
  *     id: 1,
- *     name: "iPhone 11",
+ *     name: "Product",
  *     price: 3000
  * }
  */
@@ -20,22 +20,14 @@ export default {
     },
     remove(item) {
         this.load()
-        for (let i = 0; i < this.products.length; i++) {
-            if (this.products[i].id === item.id) {
-                this.products.splice(i, 1)
-                break
-            }
-        }
+        const index = this.products.map((el) => {
+            return el.id
+        }).indexOf(item.id)
+
+        this.products.splice(index, 1)
         this.count--
         this.total -= item.price
         this.save()
-    },
-    save() {
-        localStorage.setItem('cart', JSON.stringify({
-            products: this.products,
-            count: this.count,
-            total: this.total
-        }))
     },
     load() {
         let data = localStorage.getItem('cart')
@@ -45,5 +37,12 @@ export default {
             this.count = data.count
             this.total = data.total
         }
+    },
+    save() {
+        localStorage.setItem('cart', JSON.stringify({
+            products: this.products,
+            count: this.count,
+            total: this.total,
+        }))
     }
 }

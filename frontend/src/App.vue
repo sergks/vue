@@ -23,9 +23,11 @@
               <li class="nav-item">
                 <CartWidget></CartWidget>
               </li>
-              <li class="nav-item">
-                <router-link class="nav-link" v-bind:to="{name: 'Profile'}" v-if="user.isAuth()">{{user.email}}</router-link>
-                <router-link class="nav-link" v-bind:to="{name: 'SignIn'}" v-else>Войти</router-link>
+              <li class="nav-item" v-if="user.isAuth()">
+                <router-link class="nav-link" v-bind:to="{name: 'Profile'}">{{user.email}}</router-link>
+              </li>
+              <li class="nav-item" v-else>
+                <router-link class="nav-link" v-bind:to="{name: 'SignIn'}">Войти</router-link>
               </li>
             </ul>
           </div>

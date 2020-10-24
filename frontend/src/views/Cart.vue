@@ -1,34 +1,35 @@
 <template>
-  <div class="container cart">
-    <h1>Ваши товары</h1>
-    <div class="empty" v-if="cart.count === 0">Пока нет ни одного товара.</div>
-    <div v-if="cart.count > 0">
-      <table class="table">
+  <div class="container cart-page">
+    <h1>Наши товары</h1>
+    <div class="cart-empty" v-if="cart.total === 0">
+      Пока только кот наплакал)
+    </div>
+    <div class="cart-table" v-if="cart.total > 0">
+      <table class="table table-bordered">
         <thead>
-          <tr>
-            <th>Товар</th>
-            <th>Стоимость</th>
-            <th></th>
-          </tr>
+        <tr>
+          <th>Товар</th>
+          <th>Стоимость</th>
+          <th></th>
+        </tr>
         </thead>
         <tbody>
-          <tr v-for="product in cart.products">
-            <td>
+        <tr v-for="product in cart.products">
+          <td width="200">
+            <div class="form-group">
               <img class="cart-image" v-bind:src="product.image">
-              <br>
-              {{product.name}}
-            </td>
-            <td>
-              {{product.price}} ₽
-            </td>
-            <td>
-              <button class="btn btn-danger btn-sm" v-on:click="remove(product)">Удалить</button>
-            </td>
-          </tr>
-          <tr>
-            <td><strong>Итого:</strong></td>
-            <td colspan="2"><strong>{{cart.total}} ₽</strong></td>
-          </tr>
+            </div>
+            {{product.name}}
+          </td>
+          <td>{{product.price}} ₽</td>
+          <td>
+            <button class="btn btn-danger btn-sm" v-on:click="remove(product)">Удалить</button>
+          </td>
+        </tr>
+        <tr>
+          <td><b>Итого:</b></td>
+          <td colspan="2"><b>{{cart.total}} ₽</b></td>
+        </tr>
         </tbody>
       </table>
     </div>
@@ -36,19 +37,18 @@
 </template>
 
 <script>
-  import Cart from '@/components/cart/cart'
+  import CartData from '@/components/cart/cart'
   export default {
     name: "Cart",
     data() {
-      let data = Cart
-      data.load()
       return {
-        cart: data
+        cart: CartData
       }
     },
     methods: {
       remove(item) {
         this.cart.remove(item)
+        // Send Ajax Request
       }
     }
   }
