@@ -6,6 +6,7 @@ import Catalog from "@/views/Catalog";
 import Delivery from "@/views/Delivery";
 import SignIn from "@/views/SignIn";
 import Cart from "@/views/Cart";
+import Profile from "@/views/Profile";
 
 Vue.use(VueRouter)
 
@@ -39,6 +40,11 @@ const routes = [
     path: '/sign-in',
     name: 'SignIn',
     component: SignIn
+  },
+  {
+    path: '/profile',
+    name: 'Profile',
+    component: Profile
   }
 ]
 

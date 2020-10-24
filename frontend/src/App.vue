@@ -24,7 +24,8 @@
                 <CartWidget></CartWidget>
               </li>
               <li class="nav-item">
-                <router-link class="nav-link" v-bind:to="{name: 'SignIn'}">Войти</router-link>
+                <router-link class="nav-link" v-bind:to="{name: 'Profile'}" v-if="user.isAuth()">{{user.email}}</router-link>
+                <router-link class="nav-link" v-bind:to="{name: 'SignIn'}" v-else>Войти</router-link>
               </li>
             </ul>
           </div>
@@ -45,7 +46,13 @@
 </template>
 <script>
 import CartWidget from "@/components/cart/CartWidget";
+import User from '@/components/user/user'
 export default {
-  components: {CartWidget}
+  components: {CartWidget},
+  data() {
+    return {
+      user: User
+    }
+  }
 }
 </script>

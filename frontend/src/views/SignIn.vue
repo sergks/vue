@@ -24,6 +24,7 @@
 </template>
 
 <script>
+  import User from '@/components/user/user'
   export default {
     name: "SignIn",
     data() {
@@ -37,7 +38,10 @@
       signIn(e) {
         if (this.validate()) {
           // SEND Ajax запрос
-          console.log('SignIn')
+          User.login({
+            email: this.email,
+            accessToken: 'ksdjflksjdflkjdslkfj!#'
+          })
         }
         e.preventDefault();
       },
