@@ -12,12 +12,13 @@
 </template>
 
 <script>
+  import Cart from '@/components/cart/cart'
   export default {
     name: "Product",
     props: ['product'],
     methods: {
       addToCart() {
-        alert('Товар ' + this.product.name + ' добавлен в корзину.')
+        Cart.add(this.product)
       }
     }
   }

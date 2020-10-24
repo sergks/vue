@@ -40,6 +40,10 @@ main {
     color: red;
 }
 
+.cart .cart-image {
+    max-width: 60px;
+}
+
 
 /* Featurettes
 ------------------------- */

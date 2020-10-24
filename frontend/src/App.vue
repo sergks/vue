@@ -21,6 +21,9 @@
             </ul>
             <ul class="navbar-nav">
               <li class="nav-item">
+                <CartWidget></CartWidget>
+              </li>
+              <li class="nav-item">
                 <router-link class="nav-link" v-bind:to="{name: 'SignIn'}">Войти</router-link>
               </li>
             </ul>
@@ -40,3 +43,9 @@
     </footer>
   </div>
 </template>
+<script>
+import CartWidget from "@/components/cart/CartWidget";
+export default {
+  components: {CartWidget}
+}
+</script>
