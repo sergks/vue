@@ -22,7 +22,7 @@ export default {
         this.load()
         for (let i = 0; i < this.products.length; i++) {
             if (this.products[i].id === item.id) {
-                delete this.products[i]
+                this.products.splice(i, 1)
                 break
             }
         }
