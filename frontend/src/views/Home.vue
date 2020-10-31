@@ -14,6 +14,7 @@
 <script>
   import Carousel from "@/components/Carousel";
   import Product from "@/components/products/Product";
+  import Axios from 'axios';
   export default {
     name: 'Home',
     components: {Product, Carousel},
@@ -40,6 +41,14 @@
           },
         ]
       }
+    },
+    created() {
+      // const instance = Axios.create({
+      //   baseURL: 'https://eak-stand03.awg.ru:8443/api/app',
+      //   headers: {'Authorization': 'Bearer eRyM9cWrzOMhEFnFQgwyGmf1-9tVS0Rg'}
+      // });
+      //
+      // instance.post('/exam-groups/send-message')
     }
   }
 </script>

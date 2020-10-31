@@ -1,0 +1,18 @@
+version: '3.1'
+services:
+  php:
+    image: yiisoftware/yii2-php:7.3-apache
+    volumes:
+      - ~/.composer-docker/cache:/root/.composer/cache:delegated
+      - ./:/app:delegated
+    ports:
+      - '1199:80'
+
+  mysql:
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password --character-set-server=utf8 --collation-server=utf8_general_ci
+    environment:
+      - MYSQL_ROOT_PASSWORD=verysecret
+      - MYSQL_DATABASE=bstu
+      - MYSQL_USER=bstu
+      - MYSQL_PASSWORD=bstu321!
