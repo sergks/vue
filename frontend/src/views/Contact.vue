@@ -1,16 +1,27 @@
 <template>
   <div class="container contact">
     <h1>Наши контакты</h1>
-    <p>
-      The carousel is a slideshow for cycling through a series of content, built with CSS
-      3D transforms. It works with a series of images, text, or custom markup.
-      It also includes support for previous/next controls and indicators.
-    </p>
+    <p>{{page.text}}</p>
   </div>
 </template>
 
 <script>
+  import Axios from "axios";
+
   export default {
-    name: "Contact"
+    name: "Contact",
+    data() {
+      return {
+        page: {}
+      }
+    },
+    created() {
+      const instance = Axios.create({
+        baseURL: 'http://localhost:1199/v1'
+      });
+
+      instance.get('/page/contact')
+          .then((response) => this.page = response.data)
+    }
   }
 </script>

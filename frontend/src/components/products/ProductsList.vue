@@ -44,6 +44,7 @@
 
 <script>
   import Product from "@/components/products/Product";
+  import Axios from "axios";
 
   export default {
     name: "ProductsList",
@@ -54,51 +55,16 @@
           companies: ['Apple', 'Samsung', 'Sony'],
           displays: [5.0, 5.5, 6.0, 6.7]
         },
-        items: [
-          {
-            id: 1,
-            name: 'iPhone 11',
-            url: 'iphone-11',
-            image: 'https://cdn1.ozone.ru/s3/multimedia-j/wc1200/6025842691.jpg',
-            price: 80000
-          },
-          {
-            id: 2,
-            name: 'Galaxy s10',
-            url: 'galaxy-s-10',
-            image: 'https://cdn1.ozone.ru/s3/multimedia-j/wc1200/6025842691.jpg',
-            price: 60000
-          },
-          {
-            id: 3,
-            name: 'ZTE Phone A11',
-            url: 'zte-phone-a-11',
-            image: 'https://cdn1.ozone.ru/s3/multimedia-j/wc1200/6025842691.jpg',
-            price: 45000
-          },
-          {
-            id: 1,
-            name: 'iPhone 11',
-            url: 'iphone-11-black',
-            image: 'https://cdn1.ozone.ru/s3/multimedia-j/wc1200/6025842691.jpg',
-            price: 80000
-          },
-          {
-            id: 2,
-            name: 'Galaxy s10',
-            url: 'galaxy-s-10-white',
-            image: 'https://cdn1.ozone.ru/s3/multimedia-j/wc1200/6025842691.jpg',
-            price: 60000
-          },
-          {
-            id: 3,
-            name: 'ZTE Phone A11',
-            url: 'zte-phone-a-11-black',
-            image: 'https://cdn1.ozone.ru/s3/multimedia-j/wc1200/6025842691.jpg',
-            price: 45000
-          }
-        ]
+        items: []
       }
+    },
+    created() {
+      const instance = Axios.create({
+        baseURL: 'http://localhost:1199/v1'
+      });
+
+      instance.get('/product/catalog')
+          .then((response) => this.items = response.data)
     }
   }
 </script>
