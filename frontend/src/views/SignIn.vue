@@ -25,7 +25,6 @@
 
 <script>
   import User from '@/components/user/user'
-  import Axios from "axios";
   export default {
     name: "SignIn",
     data() {
@@ -38,16 +37,12 @@
     methods: {
       signIn(e) {
         if (this.validate()) {
-          const instance = Axios.create({
-            baseURL: 'http://localhost:1199/v1'
-          });
-
-          instance.post('/user/login', {
-            email: this.email,
-            password: this.password
-          }).then((response) => {
-            console.log(response.data)
-          })
+          const result = {
+            name: 'Иван Иванов',
+            email: 'ivan@ya.ru',
+            accessToken: 'jsdlf732649823709!ew98r#$432'
+          }
+          User.login(result)
         }
         e.preventDefault()
       },

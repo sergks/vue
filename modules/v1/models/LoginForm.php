@@ -25,6 +25,11 @@ class LoginForm extends Model
 
     public function getUser()
     {
-        return [];
+        return [
+            'id' => 1,
+            'name' => 'Иван',
+            'email' => $this->email,
+            'accessToken' => md5(microtime(true))
+        ];
     }
 }

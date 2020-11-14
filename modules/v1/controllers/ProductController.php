@@ -2,63 +2,35 @@
 
 namespace app\modules\v1\controllers;
 
+use app\modules\v1\models\Product;
+use Yii;
+
 class ProductController extends ApiController
 {
     public function actionHome()
     {
-        $products = [
-            [
-                'id' => 1,
-                'name' => 'iPhone 11',
-                'image' => 'https://cdn1.ozone.ru/s3/multimedia-8/wc1200/6024092216.jpg',
-                'price' => 80000
-            ],
-            [
-                'id' => 2,
-                'name' => 'Galaxy s10',
-                'image' => 'https://cdn1.ozone.ru/s3/multimedia-8/wc1200/6024092216.jpg',
-                'price' => 60000
-            ],
-            [
-                'id' => 3,
-                'name' => 'ZTE Phone A11',
-                'image' => 'https://cdn1.ozone.ru/s3/multimedia-8/wc1200/6024092216.jpg',
-                'price' => 45000
-            ]
-        ];
+        $products = Product::find()
+            ->orderBy(['createdAt' => SORT_DESC])
+            ->limit(3)
+            ->all();
 
         return $products;
     }
 
     public function actionCatalog()
     {
-        $products = [
-            [
-                'id' => 1,
-                'name' => 'iPhone 11',
-                'image' => 'https://cdn1.ozone.ru/s3/multimedia-8/wc1200/6024092216.jpg',
-                'price' => 80000
-            ],
-            [
-                'id' => 2,
-                'name' => 'Galaxy s10',
-                'image' => 'https://cdn1.ozone.ru/s3/multimedia-8/wc1200/6024092216.jpg',
-                'price' => 60000
-            ],
-            [
-                'id' => 3,
-                'name' => 'ZTE Phone A11',
-                'image' => 'https://cdn1.ozone.ru/s3/multimedia-8/wc1200/6024092216.jpg',
-                'price' => 45000
-            ],
-            [
-                'id' => 3,
-                'name' => 'ZTE Phone A12',
-                'image' => 'https://cdn1.ozone.ru/s3/multimedia-8/wc1200/6024092216.jpg',
-                'price' => 5000
-            ]
-        ];
+        $products = Product::find()
+            ->all();
 
         return $products;
+    }
+
+    public function actionCreate()
+    {
+        $model = new Product();
+        $model->load(Yii::$app->request->getBodyParams(), '');
+        $model->save();
+
+        return $model;
     }
 }

@@ -8,7 +8,7 @@
         {{product.name}}
       </router-link>
     </h3>
-    <p>Стоимость: {{product.price}}</p>
+    <p>Стоимость: {{product.formattedPrice}}</p>
     <p>
       <button class="btn btn-secondary" v-on:click="addToCart">Купить</button>
     </p>
@@ -23,7 +23,6 @@
     methods: {
       addToCart() {
         CartData.add(this.product)
-        // Send Ajax Request
       }
     }
   }

@@ -18,7 +18,7 @@ class ApiController extends Controller
             'contentNegotiator' => [
                 'class' => ContentNegotiator::className(),
                 'formats' => [
-                    'application/json' => Response::FORMAT_JSON
+                    'application/json' => Response::FORMAT_JSON,
                 ],
             ],
             'verbFilter' => [

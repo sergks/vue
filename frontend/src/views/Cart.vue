@@ -48,7 +48,6 @@
     methods: {
       remove(item) {
         this.cart.remove(item)
-        // Send Ajax Request
       }
     }
   }
