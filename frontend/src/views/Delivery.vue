@@ -16,11 +16,7 @@
       }
     },
     created() {
-      const instance = Axios.create({
-        baseURL: 'http://localhost:1199/v1'
-      });
-
-      instance.get('/page/delivery')
+      this.$http.get('/page/delivery')
           .then((response) => this.page = response.data)
     }
   }

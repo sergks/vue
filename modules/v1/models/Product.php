@@ -15,6 +15,11 @@ use yii\behaviors\SluggableBehavior;
  * @property string $createdAt Дата создания
  * @property string|null $updatedAt Дата изменения
  * @property string $url URL
+ * @property string|null $categoryId Категория
+ *
+ * @property Category $category
+ * @property Property[] $properties
+ * @property ProductProperty[] $propertiesValues
  */
 class Product extends BaseModel
 {
@@ -34,6 +39,7 @@ class Product extends BaseModel
         return [
             [['name'], 'required'],
             [['price'], 'number'],
+            [['categoryId'], 'integer'],
             [['createdAt', 'updatedAt'], 'safe'],
             [['name', 'image', 'url'], 'string', 'max' => 128],
         ];
@@ -51,7 +57,8 @@ class Product extends BaseModel
             'price' => 'Стоимость',
             'createdAt' => 'Дата создания',
             'updatedAt' => 'Дата изменения',
-            'url' => 'URL'
+            'url' => 'URL',
+            'categoryId' => 'Категория'
         ];
     }
 
@@ -82,7 +89,34 @@ class Product extends BaseModel
             'price' => (double)$this->price,
             'formattedPrice' => number_format($this->price, 0, '.', ' ') . ' ₽',
             'url' => $this->url,
-            'createdAt' => $this->createdAt
+            'createdAt' => $this->createdAt,
+            'category' => $this->category,
+            'propertiesValues' => $this->propertiesValues
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCategory()
+    {
+        return $this->hasOne(Category::class, ['id' => 'categoryId']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getProperties()
+    {
+        return $this->hasMany(Property::class, ['id' => 'property_id'])
+            ->viaTable(ProductProperty::tableName(), ['product_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getPropertiesValues()
+    {
+        return $this->hasMany(ProductProperty::class, ['productId' => 'id']);
     }
 }

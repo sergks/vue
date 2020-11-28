@@ -14,7 +14,6 @@
 <script>
   import Carousel from "@/components/Carousel";
   import Product from "@/components/products/Product";
-  import Axios from 'axios';
   export default {
     name: 'Home',
     components: {Product, Carousel},
@@ -24,12 +23,8 @@
       }
     },
     created() {
-      const instance = Axios.create({
-        baseURL: 'http://localhost:1199/v1'
-      });
-
-      instance.get('/product/home')
-        .then((response) => this.items = response.data)
+      this.$http.get('/product/home')
+          .then((response) => this.items = response.data)
     }
   }
 </script>

@@ -2,6 +2,17 @@
   <div class="row">
     <div class="col-md-3">
       <div class="filter">
+        <h5>Категории</h5>
+        <ul class="list-unstyled">
+          <li v-for="category in filter.categories">
+            <label>
+              <input type="checkbox"> {{category.name}}
+            </label>
+          </li>
+        </ul>
+        <hr>
+      </div>
+      <div class="filter">
         <h5>Производитель</h5>
         <ul class="list-unstyled">
           <li v-for="company in filter.companies">
@@ -53,17 +64,17 @@
       return {
         filter: {
           companies: ['Apple', 'Samsung', 'Sony'],
-          displays: [5.0, 5.5, 6.0, 6.7]
+          displays: [5.0, 5.5, 6.0, 6.7],
+          categories: []
         },
         items: []
       }
     },
     created() {
-      const instance = Axios.create({
-        baseURL: 'http://localhost:1199/v1'
-      });
+      this.$http.get('/category/list')
+        .then((response) => this.filter.categories = response.data)
 
-      instance.get('/product/catalog')
+      this.$http.get('/product/catalog')
           .then((response) => this.items = response.data)
     }
   }

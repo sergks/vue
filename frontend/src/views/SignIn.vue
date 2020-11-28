@@ -1,8 +1,8 @@
 <template>
-  <div class="container sign-in">
-    <h1>Авторизация</h1>
+  <div class="sign-in">
     <div class="row">
-      <div class="col-md-5">
+      <div class="col-md-5 m-auto">
+        <h1>Авторизация</h1>
         <form @submit="signIn">
           <div class="form-group">
             <label for="email">Email</label>

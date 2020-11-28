@@ -92,3 +92,9 @@ main {
         font-size: 3.5rem;
     }
 }
+
+.price {
+    font-weight: bold;
+    font-size: 22px;
+    color: #333;
+}
